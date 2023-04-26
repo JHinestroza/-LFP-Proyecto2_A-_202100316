@@ -1,0 +1,18 @@
+digraph ejempplo {
+	fontsize=12 width=0.9
+	4.5 [label=4.5 shape=circle]
+	5.32 [label=5.32 shape=circle]
+	Suma [label=Suma shape=circle]
+	4.5 -> Suma
+	5.32 -> Suma
+	4.5 [label=4.5 shape=circle]
+	1000 [label=1000 shape=circle]
+	Suma [label=Suma shape=circle]
+	4.5 -> Suma
+	1000 -> Suma
+	0.8939966636005579 [label=0.8939966636005579 shape=circle]
+	5.32 [label=5.32 shape=circle]
+	Suma [label=Suma shape=circle]
+	0.8939966636005579 -> Suma
+	5.32 -> Suma
+}
