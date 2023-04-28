@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter import filedialog
 import tkinter as tk
 from tkinter import messagebox
-from Analizador import instruccion,graficar,getErrores_, imprimir
+from Analizador import instruccion,graficar,getErrores_,_operar
 
 class kinter():
     def __init__(self) -> None:
@@ -97,7 +97,7 @@ class kinter():
     def analizar(self):
         contenido = self.texto.get('1.0', tk.END)
         instruccion(contenido)
-        imprimir()
+        _operar()
 
     def actualizar_posicion(self,event):
         posicion = self.texto.index(tk.INSERT)

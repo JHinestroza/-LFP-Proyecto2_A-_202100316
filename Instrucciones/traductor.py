@@ -1,30 +1,26 @@
 from Abstract.Abstract import Expresion
 from math import *
+
+
 class Arimetica(Expresion):
-    def __init__(self, izquierda,derecha, tipo, fila,columna) -> None:
-        self.izquierda = izquierda
-        self.derecha = derecha
-        self.tipo = tipo
+    def __init__(self, funcion,nombre, fila,columna) -> None:
+        self.funcion = funcion
+        self.nombre = nombre
         super().__init__(fila, columna)
     
     def operar(self, arbol):
-        leftvalue = ''
-        rightvalue = ''
-        #verificar que los numeros no vengan vacios
-        if self.izquierda != None:
-            leftvalue = self.izquierda.operar(arbol)
-        if self.derecha != None:
-            rightvalue = self.derecha.operar(arbol)
+        nombre = ''
+        if self.nombre != None:
+            nombre = self.nombre.operar(arbol)
         
-        if self.tipo.operar(arbol) == 'CrearBD':
-            return 'use(‘nombreBaseDatos’);'
-        elif self.tipo.operar(arbol) == 'EliminarBD':
-            return 'db.dropDatabase();'
-        elif self.tipo.operar(arbol) == 'CrearColeccion':
-            return 'db.createCollection(‘nombreColeccion’); '
-        elif self.tipo.operar(arbol) == 'EliminarColeccio':
-            return 'db.nombreColeccion.drop();'
-
+        if self.funcion.operar(arbol) == 'CrearBD()':
+            return f'use(‘{nombre}’);'
+        elif self.funcion.operar(arbol) == 'EliminarBD()':
+            return f'db.dropDatabase(‘{nombre}’);'
+        elif self.funcion.operar(arbol) == f'CrearColeccion(“{nombre}”)':
+            return f'db.createCollection(‘{nombre}’);'
+        elif self.funcion.operar(arbol) == 'EliminarColeccio()':
+            return f'db.nombreColeccion.drop(‘{nombre}’);'
         
         
     def getfila(self):
