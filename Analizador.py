@@ -4,7 +4,6 @@ from Abstract.numero import *
 from Graficar import Grafica
 from Errores.errores import *
 
-
 global n_lineas
 global n_columnas
 global instrucciones
@@ -67,6 +66,7 @@ def instruccion(cadena):
                 n_columnas += len(str(nombre))+1
                 puntero = 0
         else:
+            print(char)
             lista_errores.append(Errores(char,n_lineas,n_columnas))
             cadena = cadena[1:]
             puntero = 0
@@ -135,6 +135,7 @@ def operar():
 
 def _operar():
     global instrucciones
+    traduccion = ''
     while True:
         operacion = operar()
         if operacion:
@@ -142,8 +143,9 @@ def _operar():
         else: 
             break
     for instruccion in instrucciones:
+        traduccion += instruccion.operar(None)+'\n'
         print(instruccion.operar(None))
-    return instrucciones
+    return traduccion
 
 
 def graficar():

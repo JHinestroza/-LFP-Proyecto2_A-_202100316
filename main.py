@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter import filedialog
 import tkinter as tk
 from tkinter import messagebox
-from Analizador import instruccion,graficar,getErrores_,_operar
+from Analizador import instruccion,graficar,getErrores_,_operar, getErrores_
 
 class kinter():
     def __init__(self) -> None:
@@ -71,6 +71,7 @@ class kinter():
         self.b3 = Button(self.frame,command=self.guardar, text="Guardar", bg="#ADD8E6").place(x=100, y= 0, width=75, height=30)
         self.b4 = Button(self.frame,command=self.guardar_como, text="Guardar Como",bg="#ADD8E6").place(x=175, y= 0, width=100, height=30)
         self.b5 = Button(self.frame, text="Analizar",command= self.analizar, bg="#ADD8E6").place(x=275, y= 0, width=50, height=30)
+        self.b8 = Button(self.frame, text="Errores",command= self.Errores, bg="#ADD8E6").place(x=275, y= 0, width=50, height=30)
         self.b6 = Button(self.frame, text="Salir", command=self.raiz.destroy, bg="#ADD8E6").place(x=325, y= 0, width=150, height=30)
 
         self.raiz.mainloop()
@@ -94,15 +95,28 @@ class kinter():
             with open(ruta_archivo, 'w') as archivo:
                 archivo.write(contenido)
     
+    def Errores(self):
+        contenido = self.texto.get('1.0', tk.END)
+        instruccion(contenido)
+        getErrores_()
+
+    
     def analizar(self):
         contenido = self.texto.get('1.0', tk.END)
         instruccion(contenido)
-        _operar()
+        traduccion = _operar()
+        self.Salida(traduccion)
 
     def actualizar_posicion(self,event):
         posicion = self.texto.index(tk.INSERT)
         fila, columna = posicion.split('.')
         self.label.config(text=f"Fila: {fila}, Columna: {columna}")
+
+    def Salida(self, salida):
+        archivo = open("salida.txt", 'w')
+        archivo.write(salida)
+        archivo.close()
+
 
 ventana = kinter()
 ventana.menu()

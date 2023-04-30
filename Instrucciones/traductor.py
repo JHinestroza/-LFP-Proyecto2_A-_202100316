@@ -14,13 +14,13 @@ class Arimetica(Expresion):
             nombre = self.nombre.operar(arbol)
         
         if self.funcion.operar(arbol) == 'CrearBD()':
-            return f'use(‘{nombre}’);'
+            return f'use("{nombre}");'
         elif self.funcion.operar(arbol) == 'EliminarBD()':
-            return f'db.dropDatabase(‘{nombre}’);'
-        elif self.funcion.operar(arbol) == f'CrearColeccion(“{nombre}”)':
-            return f'db.createCollection(‘{nombre}’);'
+            return f'db.dropDatabase("{nombre}");'
+        elif self.funcion.operar(arbol) == f'CrearColeccion("{nombre}")':
+            return f'db.createCollection("{nombre}");'
         elif self.funcion.operar(arbol) == 'EliminarColeccio()':
-            return f'db.nombreColeccion.drop(‘{nombre}’);'
+            return f'db.nombreColeccion.drop("{nombre}");'
         
         
     def getfila(self):
